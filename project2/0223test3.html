@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>导航</title>
+    <style media="screen">
+    a:hover {border-color:white;}
+    .aa{
+      width: 100%;
+      height: 600px;
+      background-color:
+    }
+    #bb{
+  position: fixed;
+      width: 15%;
+      margin-left: 500px;
+      height: 50px;
+      background-color: yellow;
+    }
+    span{
+      margin: 10px 60px;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="bb">
+      <p>小操作：</p>
+      <button id="red">红色</button>
+     <button id="blue">蓝色</button>
+       <button id="green">绿色</button>
+    </div>
+    <div class="aa" style="background-color:red"></div>
+    <div class="aa" style="background-color:blue"></div>
+    <div class="aa" style="background-color:green"></div>
+<script type="text/javascript">
+  var allbut = document.getElementsByTagName('button');//找出页面中所有的button
+
+  //对所有button进行遍历，逐一对button进行相应的操作
+  for (var i = 0; i < allbut.length; i++) {
+allbut[i].style.backgroundColor = "#EEDFCC";
+    allbut[i].onclick = caozuoyemian;
+  }
+    window.onscroll = caozuoSuobiao;   //当鼠标在页面上滚动时，button的style要有变化
+
+  //  Element.style.removeProperty("color")移除style中的color样式
+
+  //改变按钮的样式的函数,传入的参数为button的ID
+  function shezhiyangsi(buttonId){
+    for(var j= 0;j<allbut.length;j++){
+      if(allbut[j].id ==buttonId){
+        allbut[j].style.backgroundColor = "blue";
+      }else {
+        allbut[j].style.backgroundColor = "#EEDFCC";
+      }
+  }
+}
+  //点击按钮时，页面的变化及按钮样式的变化,传入的参数为一个事件
+  function caozuoyemian(e){
+    if (e.target.id == "red") {
+    //  e.target.style.backgroundColor :"red" ;
+    shezhiyangsi(e.target.id)
+      window.scrollTo(0,0);
+    }
+    else  if (e.target.id == "blue") {
+      shezhiyangsi(e.target.id)
+        window.scrollTo(0,600);
+      }
+      else  if (e.target.id == "green") {
+          shezhiyangsi(e.target.id)
+          window.scrollTo(0,1200);
+        }
+      }
+    //鼠标滚动在页面上滚动button的变化
+    function caozuoSuobiao(){
+      //if(window.pageYOffset>=0&&pageYOffset<window.innerHeigh){
+         if (window.pageYOffset >= 600 - window.innerHeight / 2 && window.pageYOffset <= 1200 - window.innerHeight /2) {
+        shezhiyangsi(allbut[1].id);
+      }
+      //else if (window.pageYOffset>=window.innerHeigh&&window.pageYOffset<=window.innerHeigh*1.9) {
+       else if (window.pageYOffset < 600 - window.innerHeight / 2) {
+       shezhiyangsi(allbut[0].id);
+      }
+      else {
+        shezhiyangsi(allbut[2].id);
+      }
+    }
+
+
+
+</script>
+  </body>
+</html>
